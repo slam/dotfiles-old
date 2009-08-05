@@ -1,4 +1,4 @@
-source ~/.screenrc
+source $HOME/.screenrc
 
 screen 0
 screen 1
