@@ -7,5 +7,9 @@
 	diff = auto
 	status = auto
 	branch = auto
-[core]
-	excludesfile = /Users/slam/.gitignore
+[merge]
+	tool = vimdiff
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = no
