@@ -1,6 +1,6 @@
 [user]
-	name = Ryan Bates
-	email = ryan@railscasts.com
+	name = Sahn Lam
+	email = sahn@pobox.com
 [alias]
 	co = checkout
 [color]
@@ -8,7 +8,4 @@
 	status = auto
 	branch = auto
 [core]
-	excludesfile = /Users/rbates/.gitignore
-	editor = mate -w
-[apply]
-	whitespace = nowarn
+	excludesfile = /Users/slam/.gitignore
