@@ -28,7 +28,7 @@ function j { jobs; }
 function rh() { echo -ne "\033[8;$1;${COLUMNS}t"; }
 function rw() { echo -ne "\033[8;${LINES};$1t"; }
 
-alias attach='~/.bash/grabssh; screen -d -R -S main -c /u/slam/.screenrc.main'
+alias attach='~/.bash/grabssh; screen -d -R -S main -c ~/.screenrc.main'
 alias fixssh='source $HOME/.fixssh/fixssh-$HOSTNAME'
 
 function _fixssh() {
