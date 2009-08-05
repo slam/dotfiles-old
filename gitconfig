@@ -1,8 +1,6 @@
 [user]
 	name = Sahn Lam
 	email = sahn@pobox.com
-[alias]
-	co = checkout
 [color]
 	diff = auto
 	status = auto
