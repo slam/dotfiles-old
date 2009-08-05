@@ -1,0 +1,42 @@
+# Have a big scrollback buffer
+defscrollback 4196
+
+# Set the titlebar/icon title of the GUI terminals
+termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
+
+# set these terminals up to be 'optimal' instead of vt100
+termcapinfo xterm*|linux*|rxvt*|Eterm* OP
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I" 
+# tell screen how to set colors. AB = background, AF=foreground 
+termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color 
+defbce "on" 
+
+hardstatus on
+hardstatus lastline
+hardstatus string "%h [%Lw]"
+
+# Tell screen what my prompt looks like so it knows how to put the
+# current running command on the individual screen title.
+shelltitle '$ |'
+
+# Add keybinds for screens 10-19. Ctrl-A - 0 goes to screen 10, for
+# example.
+bind -c tens 0 select 10
+bind -c tens 1 select 11
+bind -c tens 2 select 12
+bind -c tens 3 select 13
+bind -c tens 4 select 14
+bind -c tens 5 select 15
+bind -c tens 6 select 16
+bind -c tens 7 select 17
+bind -c tens 8 select 18
+bind -c tens 9 select 19
+bind - command -c tens
+
+# Move up and down split windows
+bind j focus down
+bind k focus up
