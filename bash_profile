@@ -1,12 +1,11 @@
-source ~/.bash/aliases
-source ~/.bash/completions
-source ~/.bash/paths
-source ~/.bash/config
+
+if [ -x "/usr/bin/keychain" ]
+then
+	/usr/bin/keychain id_dsa
+	. ~/.keychain/${HOSTNAME}-sh
+fi
 
 if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
+	. ~/.bashrc
 fi
 
-if [ -f ~/.localrc ]; then
-  . ~/.localrc
-fi
