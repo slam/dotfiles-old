@@ -52,9 +52,17 @@ case $TERM in
         ;;
 esac
 
-PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}\
-[\h:\W]\
-\$ "
+# unstaged: *
+# staged: +
+GIT_PS1_SHOWDIRTYSTATE=YES
+# stashed: $
+GIT_PS1_SHOWSTASHSTATE=YES
+# untracked: %
+GIT_PS1_SHOWUNTRACKEDFILES=YES
+
+PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
+'[\h:\W$(__git_ps1 " (%s)")]\
+\$ '
 PS2='> '
 PS4='+ '
 }
