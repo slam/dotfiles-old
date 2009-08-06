@@ -11,3 +11,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = no
+[core]
+	excludesfile = /Users/slam/.gitignore
