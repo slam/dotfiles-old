@@ -40,3 +40,9 @@ bind - command -c tens
 # Move up and down split windows
 bind j focus down
 bind k focus up
+
+# On OS X the PATH environment is not inherited from the parent
+# process unless this is set
+#
+# http://code.google.com/p/silassewell/wiki/ScreenOSX
+shell -$SHELL
