@@ -21,7 +21,7 @@ endif
 
 if &t_Co >= 256
   set background=light
-	colorscheme peaksea
+  colorscheme peaksea
   syntax on
 endif
 
@@ -50,6 +50,7 @@ set listchars=tab:>-,trail:-
 set ruler " show the cursor position all the time
 set showmatch " jump to matching bracket briefly
 set title " set title to the value of titlestring
+set modelines& " restore modelines to 5 on OS X
 
 if v:version >= 701
 
@@ -80,9 +81,7 @@ set smartindent
 filetype plugin indent on
 
 set pastetoggle=<leader>pt
-
 set textwidth=68
-nnoremap Q gq		" Use the old Q key for formatting
 
 set viminfo='20,\"50 " don't store more than 50 lines of registers
 set history=50 " keep 50 lines of command line history
@@ -95,10 +94,10 @@ set tags=tags;/ " search tags from cwd upwards until found
 
 " Edit another file in the same directory.
 if has("unix") 
-	map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-else 
-	map <leader>e :e <C-R>=expand("%:p:h") . "\\" <CR>
-endif 
+  map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+else
+  map <leader>e :e <C-R>=expand("%:p:h") . "\\" <CR>
+endif
 
 
 nn <leader>d :bd<CR>
