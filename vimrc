@@ -81,7 +81,8 @@ set smartindent
 filetype plugin indent on
 
 set pastetoggle=<leader>pt
-set textwidth=68
+set textwidth=78
+set statusline=%<%f\ %y%m%r%=%-14.(%l,%c%V%)\ %P " add filetype to status line
 
 set viminfo='20,\"50 " don't store more than 50 lines of registers
 set history=50 " keep 50 lines of command line history
@@ -107,8 +108,8 @@ map <leader>b :BufExplorer<cr>
 map <leader>s :SBufExplorer<cr>
 map <leader>v :VSBufExplorer<cr>
 
-" Fix a color bug with vim and screen. If vim has set a background
-" color the console still use the color after vim quits.
+" Fix a color bug with vim and screen. If vim has set a background color the
+" console still use the color after vim quits.
 augroup fix_gnu_screen
   autocmd!
   autocmd VimLeave * :set term=screen
