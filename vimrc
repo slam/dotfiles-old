@@ -104,9 +104,21 @@ endif
 nn <leader>d :bd<CR>
 nn <leader>c <C-W>c
 
+"
+" Plugins
+"
 map <leader>b :BufExplorer<cr>
 map <leader>s :SBufExplorer<cr>
 map <leader>v :VSBufExplorer<cr>
+
+" taglist plugin
+let Tlist_Show_One_File = 1 " show tags for current buffer only
+" ctags gets confused by the THROW macro in C++ because it looks like a
+" function.
+let Tlist_Ctags_Cmd = 'ctags -I THROW=throw'
+let Tlist_WinWidth = 40
+map <leader>t :TlistToggle<CR>
+
 
 " Fix a color bug with vim and screen. If vim has set a background color the
 " console still use the color after vim quits.
