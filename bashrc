@@ -69,6 +69,10 @@ PS4='+ '
 
 prom1
 
+bashrc_arch=~/.bash/bashrc.`uname`
+if [ -f $bashrc_arch ] ; then
+	. $bashrc_arch
+fi
 
 if [ -f ~/.bash/bashrc.local ] ; then
 	. ~/.bash/bashrc.local
