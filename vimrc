@@ -1,0 +1,126 @@
+"
+" Color Schemes
+"
+if &term =~ "xterm"
+  set t_Co=8
+  set t_Sf=[3%p1%dm
+  set t_Sb=[4%p1%dm
+endif
+
+if &term =~ "screen*" || &term =~ "xterm-256"
+  set title
+  set t_Co=256
+  set t_ts=]2;
+  set t_fs=
+endif
+
+if &t_Co > 2
+  set background=light
+  syntax on
+endif
+
+if &t_Co >= 256
+  set background=light
+	colorscheme peaksea
+  syntax on
+endif
+
+if has("gui_running")
+  set background=light
+  colorscheme peaksea
+  syntax on
+endif
+
+"
+" Basic Stuff
+"
+set nocompatible " explicitly get out of vi-compatible mode
+set noexrc " don't load vimrc found in current directory
+set backspace=indent,eol,start " make backspace flexible
+set hidden " change buffer without saving
+set noerrorbells " don't make noise
+set novisualbell " dont' blink
+set nobackup " don't make a backup before overwriting a file
+set wildmenu " turn on command line completion
+set wildmode=list:longest " list all matches until last one standing
+set wildignore+=*.class,*.o,*.obj,*.d,*.hh " ignore these files
+set laststatus=2 " show status line even with one window left
+set list " show tabs and trailing spaces
+set listchars=tab:>-,trail:-
+set ruler " show the cursor position all the time
+set showmatch " jump to matching bracket briefly
+set title " set title to the value of titlestring
+
+if v:version >= 701
+
+elseif v:version >= 700
+
+elseif v:version >= 600
+
+endif
+
+"
+" GUI-related Stuff
+"
+if has("gui_running")
+  set guioptions-=T " include toolbar
+  set guioptions-=m " include menubar
+  set mouse=a
+  set clipboard+=unamed
+else
+  set clipboard=exclude:screen.*
+endif
+
+"
+" Indenting behaviors
+"
+set autoindent
+set smarttab
+set smartindent
+filetype plugin indent on
+
+set pastetoggle=<leader>pt
+
+set textwidth=68
+nnoremap Q gq		" Use the old Q key for formatting
+
+set viminfo='20,\"50 " don't store more than 50 lines of registers
+set history=50 " keep 50 lines of command line history
+
+set tags=tags;/ " search tags from cwd upwards until found
+
+"
+" Macros
+"
+
+" Edit another file in the same directory.
+if has("unix") 
+	map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+else 
+	map <leader>e :e <C-R>=expand("%:p:h") . "\\" <CR>
+endif 
+
+
+nn <leader>d :bd<CR>
+nn <leader>c <C-W>c
+
+map <leader>b :BufExplorer<cr>
+map <leader>s :SBufExplorer<cr>
+map <leader>v :VSBufExplorer<cr>
+
+" Fix a color bug with vim and screen. If vim has set a background
+" color the console still use the color after vim quits.
+augroup fix_gnu_screen
+  autocmd!
+  autocmd VimLeave * :set term=screen
+augroup END
+
+"
+" Source in local vimrc if exists.
+"
+let localvimrc=expand("~/.vim/vimrc.local")
+if filereadable(localvimrc)
+  exec "source " . localvimrc
+endif
+
+" vim:tw=78:ts=2:et:sw=2
