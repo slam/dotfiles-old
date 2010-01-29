@@ -137,6 +137,8 @@ if has("cscope")
   set cscopequickfix=s-,c-,d-,i-,t-,e-
 endif
 
+autocmd FileType php set shiftwidth=2 expandtab tabstop=2
+
 "
 " Source in local vimrc if exists.
 "
