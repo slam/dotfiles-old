@@ -72,7 +72,7 @@ if has("gui_running")
   set guioptions-=T " include toolbar
   set guioptions-=m " include menubar
   set mouse=a
-  set clipboard+=unamed
+  "set clipboard+=unamed
 else
   set clipboard=exclude:screen.*
 endif
