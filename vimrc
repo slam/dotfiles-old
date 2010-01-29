@@ -51,6 +51,11 @@ set ruler " show the cursor position all the time
 set showmatch " jump to matching bracket briefly
 set title " set title to the value of titlestring
 set modelines& " restore modelines to 5 on OS X
+if has("win32") || has("win64")
+  set directory=$TMP
+else
+  set directory=~/tmp,/var/tmp,/tmp
+endif
 
 if v:version >= 701
 
@@ -126,6 +131,11 @@ augroup fix_gnu_screen
   autocmd!
   autocmd VimLeave * :set term=screen
 augroup END
+
+if has("cscope")
+  " Use quick fix window
+  set cscopequickfix=s-,c-,d-,i-,t-,e-
+endif
 
 "
 " Source in local vimrc if exists.
