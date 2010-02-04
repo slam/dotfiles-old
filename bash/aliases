@@ -58,6 +58,11 @@ function vim() {
 	command vim "$@";
 }
 
+function gvim() {
+	_fixssh;
+	command gvim --remote-silent "$@";
+}
+
 function ssh() {
 	_fixssh;
 	command ssh "$@";
