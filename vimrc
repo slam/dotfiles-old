@@ -27,7 +27,7 @@ endif
 
 if has("gui_running")
   set background=light
-  colorscheme peaksea
+  colorscheme autumn
   syntax on
 endif
 
@@ -71,8 +71,12 @@ endif
 if has("gui_running")
   set guioptions-=T " include toolbar
   set guioptions-=m " include menubar
+  set guioptions-=l " exclude scrollbars
+  set guioptions-=r " exclude scrollbars
+  set guioptions-=L " exclude scrollbars
+  set guioptions-=R " exclude scrollbars
   set mouse=a
-  "set clipboard+=unamed
+  set clipboard=autoselect
 else
   set clipboard=exclude:screen.*
 endif
@@ -92,7 +96,7 @@ set statusline=%<%f\ %y%m%r%=%-14.(%l,%c%V%)\ %P " add filetype to status line
 set viminfo='20,\"50 " don't store more than 50 lines of registers
 set history=50 " keep 50 lines of command line history
 
-set tags=tags;/ " search tags from cwd upwards until found
+set tags=./tags;/ " search tags from directory of the current file upwards until found
 
 "
 " Macros
@@ -127,10 +131,12 @@ map <leader>t :TlistToggle<CR>
 
 " Fix a color bug with vim and screen. If vim has set a background color the
 " console still use the color after vim quits.
-augroup fix_gnu_screen
-  autocmd!
-  autocmd VimLeave * :set term=screen
-augroup END
+if !has("gui_running")
+  augroup fix_gnu_screen
+    autocmd!
+    autocmd VimLeave * :set term=screen
+  augroup END
+endif
 
 if has("cscope")
   " Use quick fix window
