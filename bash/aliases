@@ -1,15 +1,15 @@
 function aa()
 {
-	vi ~/.bash/aliases;
-	echo source ~/.bash/aliases;
-	source ~/.bash/aliases;
+  command vim ~/.bash/aliases;
+  echo source ~/.bash/aliases;
+  source ~/.bash/aliases;
 }
 
 function al()
 {
-	vi ~/.bash/aliases.local;
-	echo source ~/.bash/aliases.local;
-	source ~/.bash/aliases.local;
+  command vim ~/.bash/aliases.local;
+  echo source ~/.bash/aliases.local;
+  source ~/.bash/aliases.local;
 }
 
 function f() { find . -name "$@" -print; }
@@ -41,12 +41,12 @@ function svnvimdiff() {
   svn diff --diff-cmd=$HOME/.dotfiles/svnvimdiff "$@";
 }
 
-function _fixssh() {
-
-	if [ ${TERM:0:6} == screen -a -e $HOME/.fixssh/fixssh-$HOSTNAME ]
-	then
-		source $HOME/.fixssh/fixssh-$HOSTNAME
-	fi
+function _fixssh()
+{
+  if [ -z "$TMUX" -a ${TERM:0:6} == screen -a -e $HOME/.fixssh/fixssh-$HOSTNAME ]
+  then
+    source $HOME/.fixssh/fixssh-$HOSTNAME
+  fi
 }
 
 function vi() {
