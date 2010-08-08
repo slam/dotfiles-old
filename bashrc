@@ -38,10 +38,10 @@ export PLAINPS1="${PS1}"
 function prom1
 {
 case $TERM in
-    xterm*)
+    xterm*|rxvt)
         local TITLEBAR='\[\033]0;\h:\W\007\]'
-	local SCREENSCAN=''
-	local SCREENTITLE=''
+        local SCREENSCAN=''
+        local SCREENTITLE=''
         ;;
     screen*)
         local TITLEBAR='\[\033]0;\h:\W\007\]'
