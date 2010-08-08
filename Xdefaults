@@ -1,0 +1,17 @@
+URxvt.loginShell: True
+URxvt.scrollBar: False
+URxvt.termName: xterm
+URxvt.perl-lib: /Users/sahn/.urxvt
+URxvt.visualBell: True
+#URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
+#URxvt*font: xft:Andale Mono:pixelsize=13
+URxvt*font: xft:Consolas:pixelsize=13
+#URxvt*font: xft:Monaco:pixelsize=13
+#URxvt*font: xft:Lucida Console:pixelsize=13
+#URxvt*font: xft:Marlett:pixelsize=13
+URxvt.perl-ext-common: default,macosx-clipboard
+URxvt.keysym.M-c: perl:macosx-clipboard:copy
+URxvt.keysym.M-v: perl:macosx-clipboard:paste
+
+xterm*faceName: Bitstream Vera Serif Mono
+xterm*faceSize: 9
