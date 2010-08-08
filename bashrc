@@ -26,6 +26,9 @@ export EDITOR
 
 set -o vi
 shopt -s checkwinsize
+export HISTCONTROL=ignoreboth
+# append to the history file, don't overwrite it
+shopt -s histappend
 
 # put things back on exit
 #trap "echo -n \"${XTON}xterm${XTOFF}\"" 0
