@@ -1,34 +1,35 @@
+
+let uname = substitute(system("uname"),"\n","","g")
+
 "
 " Color Schemes
 "
-if &term =~ "xterm"
-  set t_Co=8
-  set t_Sf=[3%p1%dm
-  set t_Sb=[4%p1%dm
-endif
-
-if &term =~ "screen*" || &term =~ "xterm-256"
-  set title
-  set t_Co=256
-  set t_ts=]2;
-  set t_fs=
-endif
-
-if &t_Co > 2
-  set background=light
-  syntax on
-endif
-
-if &t_Co >= 256
-  set background=light
-  colorscheme peaksea
-  syntax on
-endif
-
 if has("gui_running")
   set background=light
   colorscheme autumn
   syntax on
+else
+  if &term =~ "xterm"
+    set t_Co=8
+    set t_Sf=[3%p1%dm
+    set t_Sb=[4%p1%dm
+  endif
+
+  if &term =~ "screen*" || &term =~ "xterm-256" || uname == "Darwin"
+    set title
+    set t_Co=256
+    set t_ts=]2;
+    set t_fs=
+  endif
+
+  if &t_Co > 2
+    set background=light
+    syntax on
+  endif
+
+  if &t_Co >= 256
+    colorscheme peaksea
+  endif
 endif
 
 "
@@ -147,6 +148,9 @@ autocmd FileType php set shiftwidth=2 expandtab tabstop=2
 autocmd FileType python set shiftwidth=2 expandtab tabstop=2
 autocmd FileType java set shiftwidth=4 expandtab tabstop=4
 autocmd FileType perl set shiftwidth=2 expandtab tabstop=2
+autocmd FileType javascript set shiftwidth=2 expandtab tabstop=2
+autocmd FileType haskell set shiftwidth=4 expandtab tabstop=4
+autocmd FileType c set nolist
 
 "
 " Source in local vimrc if exists.
