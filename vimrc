@@ -2,6 +2,13 @@
 let uname = substitute(system("uname"),"\n","","g")
 
 "
+" Some distros set filetype indent too early. Turn it off before
+" calling pathogen.
+"
+filetype off
+call pathogen#runtime_append_all_bundles()
+
+"
 " Color Schemes
 "
 if has("gui_running")
@@ -149,6 +156,7 @@ autocmd FileType python set shiftwidth=2 expandtab tabstop=2
 autocmd FileType java set shiftwidth=4 expandtab tabstop=4
 autocmd FileType perl set shiftwidth=2 expandtab tabstop=2
 autocmd FileType javascript set shiftwidth=2 expandtab tabstop=2
+autocmd FileType html set shiftwidth=2 expandtab tabstop=2
 autocmd FileType haskell set shiftwidth=4 expandtab tabstop=4
 autocmd FileType c set nolist
 
