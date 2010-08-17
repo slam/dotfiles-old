@@ -5,6 +5,16 @@ let uname = substitute(system("uname"),"\n","","g")
 " Some distros set filetype indent too early. Turn it off before
 " calling pathogen.
 "
+" Example module management with git:
+"
+" $ git submodule add http://github.com/scrooloose/nerdtree.git bundle/nerdtree
+" $ git submodule init
+" $ git commit -m 'add nerd tree plugin as submodule'
+"
+" To pull into another machine:
+"
+" $ git submodule update --init
+"
 filetype off
 call pathogen#runtime_append_all_bundles()
 
