@@ -35,8 +35,8 @@ main = do
 
 myKeys =
     [ ((mod1Mask .|. shiftMask, xK_s), spawn "/opt/local/bin/urxvt -pe spdev")
-    , ((mod1Mask .|. shiftMask, xK_d), spawn "/opt/local/bin/urxvt -pe dev2")
-    , ((mod1Mask .|. shiftMask, xK_f), spawn "/opt/local/bin/urxvt -pe s4hb-pkr-dev1")
+    , ((mod1Mask .|. shiftMask, xK_d), spawn "/opt/local/bin/urxvt -pe 'dev<dev2>'")
+    , ((mod1Mask .|. shiftMask, xK_f), spawn "/opt/local/bin/urxvt -pe 'dev<s4hb-pkr-dev1>'")
     -- , ((mod1Mask, xK_v), pasteSelection)
     ]
     ++
