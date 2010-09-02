@@ -45,4 +45,6 @@ bind k focus up
 # process unless this is set
 #
 # http://code.google.com/p/silassewell/wiki/ScreenOSX
-shell -$SHELL
+# 
+# Not the case for snow leopard 10.6.4.
+#shell -$SHELL
