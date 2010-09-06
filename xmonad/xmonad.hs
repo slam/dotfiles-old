@@ -9,6 +9,7 @@ import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.DynamicLog
 import qualified XMonad.StackSet as W
 import System.IO
+import Control.Concurrent
 
 import XMonad.Actions.TopicSpace as TS
 import XMonad.Prompt
@@ -26,19 +27,38 @@ myTopics :: [Topic]
 myTopics =
     [ "dashboard"
     , "fblogs"
+    , "spdev"
+    , "dev2"
     , "xmonad"
+    , "wireshark"
     ]
 
 myTopicConfig :: TopicConfig
 myTopicConfig = TopicConfig
     { topicDirs = M.fromList $
-        [ ("dashboard", "~/Desktop")
-        , ("xmonad", "~/.xmonad")
+        [ ("dashboard", "~/")
         ]
     , defaultTopicAction = const $ spawnShell >*> 3
     , defaultTopic = "dashboard"
     , topicActions = M.fromList $
-        [ ("fblogs", spawnShell)
+        [ ("fblogs", spawnScreen "spdev:sahn.16:#D4BCBF"
+                  >> spawnScreen "spdev:sahn.15:#CBD4BC"
+                  >> spawnScreen "spdev:sahn.14:#BCD4D1"
+                  >> spawnScreen "spdev:sahn.13:#C5BCD4"
+                  >> spawnScreen "spdev:sahn.12:#E9F5C4"
+                  >> spawnScreen "spdev:sahn.11:#AFC4DB"
+                  )
+        , ("spdev",  spawnScreen "spdev:sahn.21:#E2E3D1"
+                  >> spawnScreen "spdev:sahn.22:#E2E3D1"
+                  >> spawnScreen "spdev:sahn.23:#E2E3D1"
+                  >> spawnScreen "spdev:sahn.24:#E2E3D1"
+                  >> spawnScreen "spdev:sahn.25:#E2E3D1"
+                  )
+        , ("dev2",   spawnScreen "dev2")
+        , ("xmonad", spawnScreenIn "localhost:dot_urxvt" "~/.urxvt"
+                  >> spawnScreenIn "localhost:dot_xmonad" "~/.xmonad"
+                  >> spawnScreenIn "localhost:dot_xmcontrib" "/usr/local/src/xmonad-contrib-0.9.1/XMonad/"
+                  )
         ]
     , maxTopicHistory = 10
     }
@@ -50,6 +70,24 @@ spawnShell = currentTopicDir myTopicConfig >>= spawnShellIn
 
 spawnShellIn :: Dir -> X ()
 spawnShellIn dir = spawn $ "/opt/local/bin/urxvt -cd " ++ dir
+
+urxvtWithExt :: String -> String -> String -> String
+urxvtWithExt extension args [] = "/opt/local/bin/urxvt -pe '" ++ extension ++ "<" ++ args ++ ">'"
+urxvtWithExt extension args dir = "/opt/local/bin/urxvt -cd " ++ dir ++ " -pe '" ++ extension ++ "<" ++ args ++ ">'"
+
+spawnScreen :: String -> X ()
+spawnScreen args = currentTopicDir myTopicConfig >>= spawnScreenIn args
+
+spawnScreenIn :: String -> Dir -> X ()
+spawnScreenIn args dir = spawnThenSleep $ (urxvtWithExt "screen" args dir)
+
+spawnIn :: String -> Dir -> X ()
+spawnIn program dir = spawnThenSleep $ program
+
+-- To make sure windows spawned in quick succession follow some deterministic
+-- order.
+spawnThenSleep :: MonadIO m => String -> m ()
+spawnThenSleep x = spawn x >> catchIO (threadDelay 500000)
 
 goto :: Topic -> X ()
 goto = switchTopic myTopicConfig

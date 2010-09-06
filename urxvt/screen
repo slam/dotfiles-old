@@ -1,0 +1,30 @@
+sub on_init {
+}
+
+sub on_start {
+    my ($self) = @_;
+
+    my @argv = split(':', $self->{argv}[0] || 'dev2');
+
+    my $host = @argv[0] || 'localhost';
+    my $session = @argv[1] || '';
+    my $bg = @argv[2] || '#DDE8F0';
+
+    if ($host ne 'localhost') {
+      $self->{term}->tt_write("exec ssh $host\n");
+    }
+
+    if ($host eq 'spdev') {
+      $self->{term}->tt_write("exec bash --rcfile ~/home/sahn/.bashrc\n");
+      $self->{term}->tt_write("cd ~/home/sahn\n");
+    }
+    elsif ($host eq 'dev2') {
+      $self->{term}->tt_write("attach\n");
+    }
+
+    if ($session) {
+      $self->{term}->tt_write("screen -dR $session\n");
+    }
+
+    $self->cmd_parse("\033]11;$bg\x07");
+}
