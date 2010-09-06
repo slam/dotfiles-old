@@ -178,4 +178,8 @@ if filereadable(localvimrc)
   exec "source " . localvimrc
 endif
 
+set nobackup
+set nowritebackup
+set noswapfile
+
 " vim:tw=78:ts=2:et:sw=2
