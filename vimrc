@@ -61,7 +61,7 @@ set novisualbell " dont' blink
 set nobackup " don't make a backup before overwriting a file
 set wildmenu " turn on command line completion
 set wildmode=list:longest " list all matches until last one standing
-set wildignore+=*.class,*.o,*.obj,*.d,*.hh " ignore these files
+set wildignore+=*.class,*.o,*.obj,*.d,*.hh,*.png,*.swf,*.gif,*.jpg,*.fla,*.mp3,*.jar " ignore these files
 set laststatus=2 " show status line even with one window left
 set list " show tabs and trailing spaces
 set listchars=tab:>-,trail:-
@@ -138,15 +138,6 @@ map <leader>b :BufExplorer<cr>
 map <leader>s :SBufExplorer<cr>
 map <leader>v :VSBufExplorer<cr>
 
-" taglist plugin
-let Tlist_Show_One_File = 1 " show tags for current buffer only
-" ctags gets confused by the THROW macro in C++ because it looks like a
-" function.
-let Tlist_Ctags_Cmd = 'ctags -I THROW=throw'
-let Tlist_WinWidth = 40
-map <leader>t :TlistToggle<CR>
-
-
 " Fix a color bug with vim and screen. If vim has set a background color the
 " console still use the color after vim quits.
 if !has("gui_running")
@@ -181,5 +172,7 @@ endif
 set nobackup
 set nowritebackup
 set noswapfile
+
+let g:CommandTMaxFiles=50000
 
 " vim:tw=78:ts=2:et:sw=2
