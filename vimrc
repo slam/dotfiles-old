@@ -1,6 +1,12 @@
 
 let uname = substitute(system("uname"),"\n","","g")
 
+let mapleader = "," " change from \ to ,
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
 "
 " Some distros set filetype indent too early. Turn it off before
 " calling pathogen.
@@ -72,7 +78,7 @@ set modelines& " restore modelines to 5 on OS X
 if has("win32") || has("win64")
   set directory=$TMP
 else
-  set directory=~/tmp,/var/tmp,/tmp
+  set directory=~/tmp//,/var/tmp//,/tmp//
 endif
 
 if v:version >= 701
@@ -171,7 +177,6 @@ endif
 
 set nobackup
 set nowritebackup
-set noswapfile
 
 let g:CommandTMaxFiles=50000
 
