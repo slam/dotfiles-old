@@ -21,7 +21,13 @@ function fp() { find . -type f \( -name '*.php' -o -name '*.h' -o -name '*.ht' -
 function fj() { find . -type f \( -name '*.java' \) -print | xargs egrep -i -n "$@"; }
 
 function ff() {
-  find . -regextype posix-egrep -type f ! -regex '.*/.svn/.*' ! -regex '.*/tags' ! -iregex '.*\.(swf|gif|jpg|png|db|gz|jar|out|files)$' -exec grep -n "$@" '{}' /dev/null \;
+  command -v ack > /dev/null
+  if [ $? -eq 0 ]
+  then
+    ack --php --java --actionscript --js "$@";
+  else
+    find . -regextype posix-egrep -type f ! -regex '.*/.svn/.*' ! -regex '.*/tags' ! -iregex '.*\.(swf|gif|jpg|png|db|gz|jar|out|files)$' -exec grep -n "$@" '{}' /dev/null \;
+  fi
 }
 
 function fcm() { find . -type f \( -name 'CMakeLists.txt' -o -name '*.cmake' \) -print | xargs egrep -i -n "$@"; }
