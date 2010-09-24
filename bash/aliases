@@ -38,7 +38,7 @@ alias attach='~/.bash/grabssh; screen -d -R -S main -c ~/.screenrc.main'
 alias fixssh='source $HOME/.fixssh/fixssh-$HOSTNAME'
 
 function svnvimdiff() {
-  svn diff --diff-cmd=$HOME/.dotfiles/svnvimdiff "$@";
+  svn diff --diff-cmd=$HOME/.svnvimdiff "$@";
 }
 
 function _fixssh()
