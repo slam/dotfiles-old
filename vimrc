@@ -7,6 +7,9 @@ let mapleader = "," " change from \ to ,
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+" Don't load lusty explorer; It conflicts with command-t
+let g:loaded_lustyexplorer = "yep"
+
 "
 " Some distros set filetype indent too early. Turn it off before
 " calling pathogen.
@@ -23,6 +26,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "
 filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 "
 " Color Schemes
@@ -127,7 +131,7 @@ set tags=./tags;/ " search tags from directory of the current file upwards until
 "
 
 " Edit another file in the same directory.
-if has("unix") 
+if has("unix")
   map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 else
   map <leader>e :e <C-R>=expand("%:p:h") . "\\" <CR>
@@ -138,11 +142,21 @@ nn <leader>d :bd<CR>
 nn <leader>c <C-W>c
 
 "
+" Easy window navigation
+"
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+"
 " Plugins
 "
 map <leader>b :BufExplorer<cr>
 map <leader>s :SBufExplorer<cr>
 map <leader>v :VSBufExplorer<cr>
+
+nmap <silent> <Leader>j :LustyJuggler<CR>
 
 " Fix a color bug with vim and screen. If vim has set a background color the
 " console still use the color after vim quits.
