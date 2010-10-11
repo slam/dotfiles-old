@@ -55,7 +55,7 @@ else
   endif
 
   if &t_Co >= 256
-    colorscheme peaksea
+    colorscheme mac_classic
   endif
 endif
 
