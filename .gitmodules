@@ -19,3 +19,6 @@
 [submodule "vim/bundle/yankring"]
 	path = vim/bundle/yankring
 	url = http://github.com/chrismetcalf/vim-yankring.git
+[submodule "vim/bundle/mac_classic"]
+	path = vim/bundle/mac_classic
+	url = http://github.com/nelstrom/vim-mac-classic-theme.git
