@@ -18,6 +18,10 @@ if [ -f ~/.bash/completions ]; then
 	source ~/.bash/completions
 fi
 
+if [ -f ~/.bash/z/z.sh ]; then
+	. ~/.bash/z/z.sh
+fi
+
 PAGER=less
 export PAGER
 
