@@ -142,14 +142,6 @@ nn <leader>d :bd<CR>
 nn <leader>c <C-W>c
 
 "
-" Easy window navigation
-"
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-"
 " Plugins
 "
 map <leader>b :BufExplorer<cr>
@@ -193,5 +185,15 @@ set nobackup
 set nowritebackup
 
 let g:CommandTMaxFiles=50000
+
+let g:ackprg="parallel -u ack -H --nocolor --nogroup --column --php --actionscript --java $* ::: *"
+
+function! SearchSource()
+  let s:wordUnderCursor = expand("<cword>")
+  let s:cmd = "Ack " . s:wordUnderCursor
+  execute s:cmd
+endfunction
+
+map <leader>g :call SearchSource()<cr>
 
 " vim:tw=78:ts=2:et:sw=2
