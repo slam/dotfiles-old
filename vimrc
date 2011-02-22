@@ -33,7 +33,7 @@ call pathogen#helptags()
 "
 if has("gui_running")
   set background=light
-  colorscheme autumn
+  colorscheme pyte
   syntax on
 else
   if &term =~ "xterm"
