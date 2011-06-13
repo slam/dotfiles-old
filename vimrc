@@ -7,12 +7,9 @@ let mapleader = "," " change from \ to ,
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Don't load lusty explorer; It conflicts with command-t
-let g:loaded_lustyexplorer = "yep"
-
 "
-" Some distros set filetype indent too early. Turn it off before
-" calling pathogen.
+" Example originally for pathogen. Leave it around since it's
+" generally useful.
 "
 " Example module management with git:
 "
@@ -24,9 +21,31 @@ let g:loaded_lustyexplorer = "yep"
 "
 " $ git submodule update --init
 "
+
+"
+" Switched from pathogen to vundle
+"
+" To pull bundles into a new machine, run in vim:
+"
+" :BundleInstall
+"
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'fs111/pydoc.vim'
+Bundle 'vimwiki'
+Bundle 'ack.vim'
+Bundle 'nelstrom/vim-mac-classic-theme'
+Bundle 'msanders/snipmate.vim'
+
+" Command-T requires manual setup:
+"
+" cd ~/.vim/bundle/Command-T/ruby/command-t; ruby extconf.rb; make
+Bundle 'Command-T'
 
 "
 " Color Schemes
@@ -197,3 +216,4 @@ endfunction
 map <leader>g :call SearchSource()<cr>
 
 " vim:tw=78:ts=2:et:sw=2
+
