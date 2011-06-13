@@ -186,7 +186,7 @@ set nowritebackup
 
 let g:CommandTMaxFiles=50000
 
-let g:ackprg="parallel -u ack -H --nocolor --nogroup --column --php --actionscript --java $* ::: *"
+let g:ackprg="parallel -u -k -j +0 -m -n5 ack -H --nocolor --nogroup --column $* ::: *"
 
 function! SearchSource()
   let s:wordUnderCursor = expand("<cword>")
