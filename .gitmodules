@@ -4,9 +4,6 @@
 [submodule "vim/bundle/vcscommand"]
 	path = vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand
-[submodule "vim/bundle/mac_classic"]
-	path = vim/bundle/mac_classic
-	url = http://github.com/nelstrom/vim-mac-classic-theme.git
 [submodule "bash/z"]
 	path = bash/z
 	url = https://github.com/rupa/z.git
