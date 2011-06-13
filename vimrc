@@ -165,7 +165,7 @@ if has("cscope")
 endif
 
 autocmd FileType php set shiftwidth=2 expandtab tabstop=2
-autocmd FileType python set shiftwidth=2 expandtab tabstop=2
+autocmd FileType python set shiftwidth=4 expandtab tabstop=4
 autocmd FileType java set shiftwidth=4 expandtab tabstop=4
 autocmd FileType perl set shiftwidth=2 expandtab tabstop=2
 autocmd FileType javascript set shiftwidth=2 expandtab tabstop=2
