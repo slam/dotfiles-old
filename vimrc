@@ -50,6 +50,8 @@ Bundle 'msanders/snipmate.vim'
 "
 " cd ~/.vim/bundle/Command-T/ruby/command-t; ruby extconf.rb; make
 Bundle 'Command-T'
+let g:CommandTMatchWindowReverse=1
+let g:CommandTMaxFiles=50000
 
 "
 " Color Schemes
@@ -206,8 +208,6 @@ endif
 
 set nobackup
 set nowritebackup
-
-let g:CommandTMaxFiles=50000
 
 let g:ackprg="parallel -u -k -j +0 -m -n5 ack -H --nocolor --nogroup --column $* ::: *"
 
