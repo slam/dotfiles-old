@@ -12,13 +12,14 @@ sub on_start {
 
     if ($host ne 'localhost') {
       $self->{term}->tt_write("exec ssh $host\n");
+      $self->{term}->tt_write("if [ -x ~/.bash/grabssh ]; then ~/.bash/grabssh; fi\n");
     }
 
-    if ($host eq 'spdev') {
+    if ($host eq 'stage1') {
       $self->{term}->tt_write("exec bash --rcfile ~/home/sahn/.bashrc\n");
       $self->{term}->tt_write("cd ~/home/sahn\n");
     }
-    elsif ($host eq 'dev2') {
+    elsif (($host eq 'dev2' or $host eq 'dev1') and ! $session) {
       $self->{term}->tt_write("attach\n");
     }
 

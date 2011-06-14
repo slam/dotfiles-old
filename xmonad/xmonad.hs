@@ -18,6 +18,9 @@ import XMonad.Prompt.Workspace
 import qualified Data.Map as M
 import Data.List
 
+import XMonad.Layout.OneBig
+import XMonad.Layout.PerWorkspace (onWorkspace, onWorkspaces)
+
 --
 -- Stole lots of ideas on TopicSpace configuation from:
 --
@@ -25,12 +28,16 @@ import Data.List
 --
 myTopics :: [Topic]
 myTopics =
-    [ "dashboard"
-    , "fblogs"
-    , "spdev"
+    [ "prodlogs"
+    , "stage1"
+    , "stage1-2"
+    , "dev1"
+    , "devlogs"
     , "dev2"
-    , "xmonad"
     , "wireshark"
+    , "dev2logs"
+    , "xmonad"
+    , "dashboard"
     ]
 
 myTopicConfig :: TopicConfig
@@ -41,20 +48,49 @@ myTopicConfig = TopicConfig
     , defaultTopicAction = const $ spawnShell >*> 3
     , defaultTopic = "dashboard"
     , topicActions = M.fromList $
-        [ ("fblogs", spawnScreen "spdev:sahn.16:#D4BCBF"
-                  >> spawnScreen "spdev:sahn.15:#CBD4BC"
-                  >> spawnScreen "spdev:sahn.14:#BCD4D1"
-                  >> spawnScreen "spdev:sahn.13:#C5BCD4"
-                  >> spawnScreen "spdev:sahn.12:#E9F5C4"
-                  >> spawnScreen "spdev:sahn.11:#AFC4DB"
+        [ ("prodlogs", spawnScreen "stage1:sahn.16:#CBD4BC"
+                  >> spawnScreen "stage1:sahn.15:#CBD4BC"
+                  >> spawnScreen "stage1:sahn.14:#CBD4BC"
+                  >> spawnScreen "stage1:sahn.13:#CBD4BC"
+                  >> spawnScreen "stage1:sahn.12:#CBD4BC"
+                  >> spawnScreen "stage1:sahn.11:#CBD4BC"
                   )
-        , ("spdev",  spawnScreen "spdev:sahn.21:#E2E3D1"
-                  >> spawnScreen "spdev:sahn.22:#E2E3D1"
-                  >> spawnScreen "spdev:sahn.23:#E2E3D1"
-                  >> spawnScreen "spdev:sahn.24:#E2E3D1"
-                  >> spawnScreen "spdev:sahn.25:#E2E3D1"
+        , ("stage1", spawnScreen "stage1:sahn.25:#E2E3D1"
+                  >> spawnScreen "stage1:sahn.24:#E2E3D1"
+                  >> spawnScreen "stage1:sahn.23:#E2E3D1"
+                  >> spawnScreen "stage1:sahn.22:#E2E3D1"
+                  >> spawnScreen "stage1:sahn.21:#E2E3D1"
                   )
-        , ("dev2",   spawnScreen "dev2")
+        , ("stage1-2", spawnScreen "stage1:sahn.36:#EEF5C1"
+                  >> spawnScreen "stage1:sahn.35:#EEF5C1"
+                  >> spawnScreen "stage1:sahn.34:#EEF5C1"
+                  >> spawnScreen "stage1:sahn.33:#EEF5C1"
+                  >> spawnScreen "stage1:sahn.32:#EEF5C1"
+                  >> spawnScreen "stage1:sahn.31:#EEF5C1"
+                  )
+        , ("dev1",   spawnScreen "dev1:sahn.15:#E0F0E2"
+                  >> spawnScreen "dev1:sahn.14:#E0F0E2"
+                  >> spawnScreen "dev1:sahn.13:#E0F0E2"
+                  >> spawnScreen "dev1:sahn.12:#E0F0E2"
+                  >> spawnScreen "dev1:sahn.11:#E0F0E2"
+                  >> spawnScreen "dev1::#DDE8F0"
+                  )
+        , ("dev2",   spawnScreen "dev2:sahn.15:#DDE8F0"
+                  >> spawnScreen "dev2:sahn.14:#DDE8F0"
+                  >> spawnScreen "dev2:sahn.13:#DDE8F0"
+                  >> spawnScreen "dev2:sahn.12:#DDE8F0"
+                  >> spawnScreen "dev2:sahn.11:#DDE8F0"
+                  >> spawnScreen "dev2::#E0F0E2"
+                  )
+
+        , ("devlogs",
+                     spawnScreen "dev1:access_log:#E0F0E2"
+                  >> spawnScreen "dev1:error_log:#E0F0E2"
+                  )
+        , ("dev2logs",
+                     spawnScreen "dev2:access_log:#E0F0E2"
+                  >> spawnScreen "dev2:error_log:#E0F0E2"
+                  )
         , ("xmonad", spawnScreenIn "localhost:dot_urxvt" "~/.urxvt"
                   >> spawnScreenIn "localhost:dot_xmonad" "~/.xmonad"
                   >> spawnScreenIn "localhost:dot_xmcontrib" "/usr/local/src/xmonad-contrib-0.9.1/XMonad/"
@@ -98,36 +134,8 @@ promptedGoto = workspacePrompt defaultXPConfig goto
 promptedShift :: X ()
 promptedShift = workspacePrompt defaultXPConfig $ windows . W.shift
 
-myPP :: PP
-myPP = defaultPP
-    { ppSep = " | "
-    , ppTitle = xmobarColor "green" ""
-    , ppCurrent = xmobarColor "yellow" ""
-    , ppUrgent = xmobarColor "red" "yellow"
-    }
-
-mergePPOutputs :: [PP -> X String] -> PP -> X String
-mergePPOutputs x pp = fmap (intercalate (ppSep pp)) . sequence . sequence x $ pp
-
-onlyTitle :: PP -> PP
-onlyTitle pp = defaultPP { ppCurrent = const ""
-                         , ppHidden  = const ""
-                         , ppVisible = const ""
-                         , ppLayout  = ppLayout pp
-                         , ppTitle   = ppTitle pp }
-
-myDynamicLogString :: TopicConfig -> PP -> X String
-myDynamicLogString tg pp = mergePPOutputs [TS.pprWindowSet tg, dynamicLogString . onlyTitle] pp
-
-myDynamicLogWithPP :: TopicConfig -> PP -> X ()
-myDynamicLogWithPP tg pp = myDynamicLogString tg pp >>= io . ppOutput pp
-
-
 myKeys =
-    [ ((mod1Mask .|. shiftMask, xK_s), spawn "/opt/local/bin/urxvt -pe spdev")
-    , ((mod1Mask .|. shiftMask, xK_d), spawn "/opt/local/bin/urxvt -pe 'dev<dev2>'")
-    , ((mod1Mask .|. shiftMask, xK_f), spawn "/opt/local/bin/urxvt -pe 'dev<s4hb-pkr-dev1>'")
-    , ((mod1Mask              , xK_n), spawnShell)
+    [ ((mod1Mask              , xK_n), spawnShell)
     , ((mod1Mask              , xK_a), currentTopicAction myTopicConfig)
     , ((mod1Mask              , xK_g), promptedGoto)
     , ((mod1Mask .|. shiftMask, xK_g), promptedShift)
@@ -143,13 +151,27 @@ myKeys =
         , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]
     ]
     ++
-    [ ((mod1Mask, k), switchNthLastFocused myTopicConfig i)
-    | (i, k) <- zip [1..] workspaceKeys]
+    -- mod-[1..9] %! Switch to workspace N
+    -- mod-shift-[1..9] %! Move client to workspace N
+    [((m .|. mod1Mask, k), windows $ f i)                     
+        | (i, k) <- zip myTopics workspaceKeys
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+--    ++
+--    [ ((mod1Mask, k), switchNthLastFocused myTopicConfig i)
+--    | (i, k) <- zip [1..] workspaceKeys]
 
 myManageHook = composeAll
     [ resource =? "Do" --> doIgnore
     ]
 
+myXmobarPP :: PP
+myXmobarPP = defaultPP { ppCurrent = xmobarColor "yellow" "" . wrap "[" "]"
+    , ppTitle   = xmobarColor "green"  ""
+    , ppVisible = wrap "(" ")"
+    , ppUrgent = xmobarColor "red" "yellow"
+}
+
+layoutCode = OneBig (3/4) (3/4)
 
 main = do
     h <- spawnPipe "/usr/local/bin/xmobar"
@@ -160,8 +182,12 @@ main = do
         , focusedBorderColor = "#2F95ED"
         , borderWidth = 5
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-        , layoutHook = avoidStruts  $  layoutHook defaultConfig
-        , logHook = myDynamicLogWithPP myTopicConfig $ myPP { ppOutput = hPutStrLn h }
+        , layoutHook = avoidStruts
+                     $ onWorkspaces [ "dev1"
+                                    , "dev2"
+                                    ] layoutCode
+                     $ layoutHook defaultConfig
+        , logHook = dynamicLogWithPP $ myXmobarPP { ppOutput = hPutStrLn h }
         , workspaces = myTopics
         }
         `additionalKeys` myKeys
