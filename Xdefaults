@@ -2,8 +2,8 @@ URxvt.loginShell: True
 URxvt.scrollBar: False
 URxvt.termName: xterm
 URxvt.visualBell: True
-URxvt*font: xft:Consolas:pixelsize=13
-#URxvt*font: xft:Monaco:pixelsize=13
+#URxvt*font: xft:Consolas:pixelsize=13
+URxvt*font: xft:Monaco:pixelsize=11
 #URxvt*font: xft:Lucida Console:pixelsize=13
 #URxvt*font: xft:Marlett:pixelsize=13
 #URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
