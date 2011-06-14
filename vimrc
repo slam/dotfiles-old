@@ -45,6 +45,7 @@ Bundle 'vimwiki'
 Bundle 'ack.vim'
 Bundle 'nelstrom/vim-mac-classic-theme'
 Bundle 'msanders/snipmate.vim'
+Bundle 'matchit.zip'
 
 " Command-T requires manual setup:
 "
@@ -172,8 +173,6 @@ nn <leader>c <C-W>c
 map <leader>b :BufExplorer<cr>
 map <leader>s :SBufExplorer<cr>
 map <leader>v :VSBufExplorer<cr>
-
-nmap <silent> <Leader>j :LustyJuggler<CR>
 
 " Fix a color bug with vim and screen. If vim has set a background color the
 " console still use the color after vim quits.
