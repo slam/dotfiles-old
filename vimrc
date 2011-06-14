@@ -25,7 +25,11 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "
 " Switched from pathogen to vundle
 "
-" To pull bundles into a new machine, run in vim:
+" To pull bundles into a new machine, run in bash:
+"
+" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"
+" And in vim:
 "
 " :BundleInstall
 "
