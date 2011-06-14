@@ -46,6 +46,8 @@ Bundle 'ack.vim'
 Bundle 'nelstrom/vim-mac-classic-theme'
 Bundle 'msanders/snipmate.vim'
 Bundle 'matchit.zip'
+Bundle 'a.vim'
+Bundle 'bufexplorer.zip'
 
 " Command-T requires manual setup:
 "
