@@ -1,0 +1,2 @@
+export PATH=~/usr/linux/bin:~/bin:$PATH
+export MANPATH=~/usr/linux/man:~/usr/linux/share/man:$MANPATH
