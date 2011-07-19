@@ -59,19 +59,29 @@ case $TERM in
         ;;
 esac
 
-# unstaged: *
-# staged: +
-GIT_PS1_SHOWDIRTYSTATE=
-# stashed: $
-GIT_PS1_SHOWSTASHSTATE=
-# untracked: %
-GIT_PS1_SHOWUNTRACKEDFILES=
+command -v git > /dev/null
+if [ $? -eq 0 ]
+then
+  # unstaged: *
+  # staged: +
+  GIT_PS1_SHOWDIRTYSTATE=
+  # stashed: $
+  GIT_PS1_SHOWSTASHSTATE=
+  # untracked: %
+  GIT_PS1_SHOWUNTRACKEDFILES=
 
-PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
+  PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
 '[\h:\W$(__git_ps1 " (%s)")]\
 \$ '
-PS2='> '
-PS4='+ '
+  PS2='> '
+  PS4='+ '
+else
+  PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
+'[\h:\W]\
+\$ '
+  PS2='> '
+  PS4='+ '
+fi
 }
 
 prom1
