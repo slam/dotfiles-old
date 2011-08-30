@@ -79,5 +79,10 @@ function xterm() {
 	command xterm "$@";
 }
 
+function scp() {
+	_fixssh;
+	command scp "$@";
+}
+
 # misc
 alias reload='. ~/.bash_profile'
