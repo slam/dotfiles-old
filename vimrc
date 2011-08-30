@@ -48,6 +48,8 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'matchit.zip'
 Bundle 'a.vim'
 Bundle 'bufexplorer.zip'
+Bundle 'vcscommand.vim'
+Bundle 'actionscript.vim--Jethani'
 
 " Command-T requires manual setup:
 "
