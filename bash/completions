@@ -1,1 +1,2 @@
 source ~/.bash/completion_scripts/git-completion.bash
+source ~/.bash/completion_scripts/svn-completion.bash
