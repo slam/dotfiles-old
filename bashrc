@@ -59,6 +59,8 @@ case $TERM in
         ;;
 esac
 
+PROMPT_COMMAND='if [ ${#PWD} -gt 30 ]; then myPWD=...${PWD:${#PWD}-27}; else myPWD=$PWD; fi'
+
 command -v git > /dev/null
 if [ $? -eq 0 ]
 then
@@ -71,7 +73,7 @@ then
   GIT_PS1_SHOWUNTRACKEDFILES=
 
   PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
-'[\h:\W$(__git_ps1 " (%s)")]\
+'[\h:$myPWD$(__git_ps1 " (%s)")]\
 \$ '
   PS2='> '
   PS4='+ '
