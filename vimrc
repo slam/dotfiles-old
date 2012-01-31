@@ -51,6 +51,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'vcscommand.vim'
 Bundle 'actionscript.vim--Jethani'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'unimpaired.vim'
 
 " Command-T requires manual setup:
 "
