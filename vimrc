@@ -50,6 +50,7 @@ Bundle 'a.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'vcscommand.vim'
 Bundle 'actionscript.vim--Jethani'
+Bundle 'altercation/vim-colors-solarized'
 
 " Command-T requires manual setup:
 "
@@ -85,7 +86,9 @@ else
   endif
 
   if &t_Co >= 256
-    colorscheme mac_classic
+    "colorscheme mac_classic
+    let g:solarized_termcolors=16
+    colorscheme solarized
   endif
 endif
 
