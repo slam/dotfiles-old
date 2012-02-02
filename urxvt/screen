@@ -8,7 +8,8 @@ sub on_start {
 
     my $host = @argv[0] || 'localhost';
     my $session = @argv[1] || '';
-    my $bg = @argv[2] || '#DDE8F0';
+    my $bg = '#fdf6e3';
+    #my $bg = @argv[2] || '#fdf6e3';
 
     if ($host ne 'localhost') {
       $self->{term}->tt_write("exec ssh $host\n");
@@ -19,12 +20,17 @@ sub on_start {
       $self->{term}->tt_write("exec bash --rcfile ~/home/sahn/.bashrc\n");
       $self->{term}->tt_write("cd ~/home/sahn\n");
     }
-    elsif (($host eq 'dev2' or $host eq 'dev1') and ! $session) {
+    elsif (($host eq 'dev5' or $host eq 'dev1') and ! $session) {
       $self->{term}->tt_write("attach\n");
     }
 
     if ($session) {
-      $self->{term}->tt_write("screen -dR $session\n");
+        if ($host eq 'dev5') {
+            $self->{term}->tt_write("screen -dR $session\n");
+        }
+        else {
+            $self->{term}->tt_write("tmux attach -d -t $session || tmux new -s $session\n");
+        }
     }
 
     $self->cmd_parse("\033]11;$bg\x07");
