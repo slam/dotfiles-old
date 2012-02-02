@@ -79,5 +79,19 @@ function xterm() {
 	command xterm "$@";
 }
 
+function scp() {
+	_fixssh;
+	command scp "$@";
+}
+
+function fsize() {
+	if [ -z "$TMUX" ]
+	then
+		printf '\33]50;%s%d\007' "xft:Monaco:pixelsize=" $1
+	else
+		printf '\033Ptmux;\033\033]50;%s%d\007' "xft:Monaco:pixelsize=" $1 '\033\\'
+	fi
+}
+
 # misc
 alias reload='. ~/.bash_profile'
