@@ -65,6 +65,7 @@ let g:CommandTMaxFiles=50000
 "
 if has("gui_running")
   set background=light
+  set guifont=Droid\ Sans\ Mono:h13
   colorscheme solarized
   syntax on
 else
@@ -302,4 +303,5 @@ if has("cscope")
 endif
 
 " vim:tw=78:ts=2:et:sw=2
+
 
