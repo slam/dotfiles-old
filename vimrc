@@ -65,6 +65,7 @@ let g:CommandTMaxFiles=50000
 "
 if has("gui_running")
   set background=light
+  set guifont=Droid\ Sans\ Mono:h13
   colorscheme solarized
   syntax on
 else
@@ -229,8 +230,10 @@ endif
 
 set nobackup
 set nowritebackup
-set undofile
-set undodir=$HOME/.vim_undo,/tmp
+if exists("&undofile")
+  set undofile
+  set undodir=$HOME/.vim_undo,/tmp
+endif
 
 let g:ackprg="parallel -u -k -j +0 -m -n5 ack -H --nocolor --nogroup --column $* ::: *"
 
