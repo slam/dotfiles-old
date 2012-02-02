@@ -230,8 +230,10 @@ endif
 
 set nobackup
 set nowritebackup
-set undofile
-set undodir=$HOME/.vim_undo,/tmp
+if exists("&undofile")
+  set undofile
+  set undodir=$HOME/.vim_undo,/tmp
+endif
 
 let g:ackprg="parallel -u -k -j +0 -m -n5 ack -H --nocolor --nogroup --column $* ::: *"
 
@@ -303,5 +305,4 @@ if has("cscope")
 endif
 
 " vim:tw=78:ts=2:et:sw=2
-
 
