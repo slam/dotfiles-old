@@ -65,7 +65,7 @@ let g:CommandTMaxFiles=50000
 "
 if has("gui_running")
   set background=light
-  colorscheme pyte
+  colorscheme solarized
   syntax on
 else
   if &term =~ "xterm"
