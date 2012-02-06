@@ -12,25 +12,53 @@ function al()
   source ~/.bash/aliases.local;
 }
 
-function f() { find . -name "$@" -print; }
+function f_helper() {
 
-function fc() { find . -type f \( -name '*.c' -o -name '*.h' -o -name '*.ht' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hpp' \) -print | xargs egrep -i -n "$@"; }
+  while [ "$1" ]
+  do
+    if [ "$1" == "--" ]
+    then
+      shift
+      break
+    fi
+    local ack_arg="$ack_arg $1"
+    shift
+  done
 
-function fp() { find . -type f \( -name '*.php' -o -name '*.h' -o -name '*.ht' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hpp' \) -print | xargs egrep -i -n "$@"; }
-
-function fj() { find . -type f \( -name '*.java' \) -print | xargs egrep -i -n "$@"; }
-
-function ff() {
   command -v ack > /dev/null
+  if [ $? -ne 0 ]
+  then
+    echo "Error: ack not found" >&2
+    return
+  fi
+
+  command -v parallel > /dev/null
   if [ $? -eq 0 ]
   then
-    ack --php --java --actionscript --js "$@";
-  else
-    find . -regextype posix-egrep -type f ! -regex '.*/.svn/.*' ! -regex '.*/tags' ! -iregex '.*\.(swf|gif|jpg|png|db|gz|jar|out|files)$' -exec grep -n "$@" '{}' /dev/null \;
+    local parallel="parallel -u -k -j +0 -m -n5"
+    local parallel_epilog="::: *"
   fi
+
+  local cmd="$parallel ack $ack_arg $@ $parallel_epilog"
+  echo $cmd >&2
+  $cmd
 }
 
-function fcm() { find . -type f \( -name 'CMakeLists.txt' -o -name '*.cmake' \) -print | xargs egrep -i -n "$@"; }
+function f() { find . -name "$@" -print; }
+
+function fc() {
+  f_helper --cpp --cc -- "$@"
+  #find . -type f \( -name '*.c' -o -name '*.h' -o -name '*.ht' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hpp' \) -print | xargs egrep -i -n "$@";
+}
+
+function fj() {
+  f_helper --java -- "$@"
+}
+
+function ff() {
+  f_helper --php --java --actionscript --js -- "$@"
+  #find . -regextype posix-egrep -type f ! -regex '.*/.svn/.*' ! -regex '.*/tags' ! -iregex '.*\.(swf|gif|jpg|png|db|gz|jar|out|files)$' -exec grep -n "$@" '{}' /dev/null \;
+}
 
 function manroff() { nroff -man "$@" | $PAGER; }
 
@@ -106,3 +134,4 @@ function fsize() {
 
 # misc
 alias reload='. ~/.bash_profile'
+
