@@ -11,8 +11,8 @@ URxvt*font: xft:Droid Sans Mono:pixelsize=13
 #URxvt*font: xft:Andale Mono:pixelsize=13
 # See man urxvtperl
 URxvt.perl-lib: /Users/sahn/.urxvt
-URxvt.perl-ext-common: default,macosx-clipboard,-option-popup,-selection-popup
-URxvt.keysym.M-c: perl:macosx-clipboard:copy
+URxvt.perl-ext-common: default,macosx-clipboard-native,-option-popup,-selection-popup
+#URxvt.keysym.M-c: perl:macosx-clipboard:copy
 URxvt.keysym.M-v: perl:macosx-clipboard:paste
 
 xterm*faceName: Bitstream Vera Serif Mono
