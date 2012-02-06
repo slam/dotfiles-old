@@ -6,4 +6,5 @@ then
   export DISPLAY=$NEW_DISPLAY
   echo "Setting DISPLAY to $DISPLAY"
 fi
+/usr/local/bin/urxvtd &
 exec /usr/local/bin/xmonad
