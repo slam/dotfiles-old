@@ -1,3 +1,4 @@
 # Put /usr/local/bin before /usr/bin to pick up my own version of
 # GNU screen that supports 256 colors.
 export PATH=$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+export CLICOLOR=1
