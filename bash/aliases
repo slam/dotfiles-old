@@ -46,7 +46,7 @@ function f_helper() {
 
 function f() { find . -name "$@" -print; }
 
-function fc() {
+function fcc() {
   f_helper --cpp --cc -- "$@"
   #find . -type f \( -name '*.c' -o -name '*.h' -o -name '*.ht' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hpp' \) -print | xargs egrep -i -n "$@";
 }
@@ -134,4 +134,5 @@ function fsize() {
 
 # misc
 alias reload='. ~/.bash_profile'
+
 
