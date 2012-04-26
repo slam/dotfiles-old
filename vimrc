@@ -112,7 +112,7 @@ set list " show tabs and trailing spaces
 set listchars=tab:>-,trail:-
 set ruler " show the cursor position all the time
 set showmatch " jump to matching bracket briefly
-set title " set title to the value of titlestring
+"set title " set title to the value of titlestring
 set modelines& " restore modelines to 5 on OS X
 if has("win32") || has("win64")
   set directory=$TMP
@@ -208,6 +208,7 @@ autocmd FileType perl set shiftwidth=2 expandtab tabstop=2
 autocmd FileType javascript set shiftwidth=2 expandtab tabstop=2
 autocmd FileType html set shiftwidth=2 expandtab tabstop=2
 autocmd FileType haskell set shiftwidth=4 expandtab tabstop=4
+autocmd FileType sh set shiftwidth=2 expandtab tabstop=2
 autocmd FileType c set nolist
 " See :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -235,7 +236,7 @@ if exists("&undofile")
   set undodir=$HOME/.vim_undo,/tmp
 endif
 
-let g:ackprg="parallel -u -k -j +0 -m -n5 ack -H --nocolor --nogroup --column $* ::: *"
+let g:ackprg="parallel -u -k -j +0 -m -n5 ack --type-add php=tpl -H --nocolor --nogroup --column $* ::: *"
 
 function! SearchSource(prog)
   let s:wordUnderCursor = expand("<cword>")
