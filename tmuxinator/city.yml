@@ -1,0 +1,15 @@
+# ~/.tmuxinator/city.yml
+# you can make as many tabs as you wish...
+
+project_name: city
+project_root: ~/git/city
+tabs:
+  - Server: [cd Server, vim]
+  - git:
+  - Client: [cd Client, vim]
+  - grep:
+  - shell:
+  - devapps: cd ~/devapps
+  - svn: cd ~/svn/city
+  - dotfiles: cd ~/dotfiles
+  - bin: cd ~/bin
