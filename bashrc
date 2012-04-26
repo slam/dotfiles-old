@@ -44,18 +44,12 @@ function prom1
 case $TERM in
     xterm*|rxvt)
         local TITLEBAR='\[\033]0;\h:\W\007\]'
-        local SCREENSCAN=''
-        local SCREENTITLE=''
         ;;
     screen*)
         local TITLEBAR='\[\033]0;\h:\W\007\]'
-	local SCREENSCAN='\[\033k\033\\\]'
-	local SCREENTITLE='\[\033k\W\033\\\]'
         ;;
     *)
         local TITLEBAR=''
-	local SCREENSCAN=''
-	local SCREENTITLE=''
         ;;
 esac
 
@@ -72,13 +66,13 @@ then
   # untracked: %
   GIT_PS1_SHOWUNTRACKEDFILES=
 
-  PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
+  PS1="${TITLEBAR}"\
 '[\h:$myPWD$(__git_ps1 " (%s)")]\
 \$ '
   PS2='> '
   PS4='+ '
 else
-  PS1="${TITLEBAR}${SCREENSCAN}${SCREENTITLE}"\
+  PS1="${TITLEBAR}"\
 '[\h:\W]\
 \$ '
   PS2='> '
