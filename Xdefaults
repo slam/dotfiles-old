@@ -1,6 +1,6 @@
 URxvt.loginShell: True
 URxvt.scrollBar: False
-URxvt.termName: xterm
+URxvt.termName: xterm-256color
 URxvt.visualBell: True
 #URxvt*font: xft:Consolas:pixelsize=13
 URxvt*font: xft:Droid Sans Mono:pixelsize=13
